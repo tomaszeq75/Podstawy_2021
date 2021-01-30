@@ -9,7 +9,35 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Zadanie15 zadanie15 = new Zadanie15();
+        Zadanie20 zadanie20 = new Zadanie20();
+    }
+
+    private static void lookForLongestPoem() {
+        Poem[] poems = initianizePoems();
+
+        int longestPoem = 0;
+        String nameLongestPoemAuthor = "";
+        for (Poem poem : poems) {
+            if (poem.getStropheNumbers() > longestPoem) {
+                longestPoem = poem.getStropheNumbers();
+                nameLongestPoemAuthor = poem.getCreator().getSurname();
+            }
+        }
+        System.out.println("Najdłuższy wiersz napisał: " + nameLongestPoemAuthor);
+    }
+
+    private static Poem[] initianizePoems() {
+        Poem poem1 = new Poem();
+        poem1.setCreator(new Author("Nowak", "Polish"));
+        poem1.setStropheNumbers(10);
+
+        Poem poem2 = new Poem(new Author("Smith", "USA"), 20);
+
+        Author author3 = new Author("YangYong", "Japan");
+        Poem poem3 = new Poem(author3, 30);
+
+        Poem[] poems = {poem1, poem2, poem3};
+        return poems;
     }
 
     private static void dateTimeExample() {

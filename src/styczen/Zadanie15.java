@@ -1,13 +1,17 @@
 package styczen;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Zadanie15 {
-    // todo skończyć może z HashMap
+    // todo skończyć może z HashMap aaa
     int[] numbers = new int[10];
     Scanner in = new Scanner(System.in);
     int[] doubledNumbers = new int[10];
     int doubleNumbersIndex = 0;
+    HashMap map;
+
 
     public Zadanie15() {
         for (int i = 0; i < numbers.length; i++) {
