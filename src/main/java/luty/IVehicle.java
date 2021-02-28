@@ -1,6 +1,6 @@
 package luty;
 
-public interface Vehicle {
+public interface IVehicle {
     String getModel();
 
     String getVin();

@@ -1,6 +1,6 @@
 package luty;
 
-public class UsedCar implements Vehicle{
+public class UsedCar implements IVehicle {
     private String model;
     private String vin;
     private int productionYear;

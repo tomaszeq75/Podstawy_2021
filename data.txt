@@ -1,0 +1,2 @@
+dane do pliku linijka 1
+dane do pliku linijka 2
