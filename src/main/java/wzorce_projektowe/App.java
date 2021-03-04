@@ -19,6 +19,7 @@ public class App {
             System.out.println(iterator.next());
         }
 
+
     }
 
     private static void examples() {
