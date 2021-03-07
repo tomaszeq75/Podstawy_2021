@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
 
-        PersonList personList = new PersonList();
+        PersonList personList = new PersonList(6);
         personList.add("Adam");
         personList.add("Zorro");
         personList.add("Jarek");
