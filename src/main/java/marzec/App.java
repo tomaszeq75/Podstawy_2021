@@ -1,12 +1,29 @@
 package marzec;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class App {
 
     public static void main(String[] args) {
 
+
+
+    }
+
+    private static void joinerDemo() {
+        Joiner_27 <String>joiner_27 = new Joiner_27(", ");
+        System.out.println(joiner_27.join("a", "b", "c"));
+
+        Joiner_27<Integer> jInt = new Joiner_27<>("-");
+        System.out.println(jInt.join2(11, 22, 33));
+
+        Joiner_27 j27 = new Joiner_27(":");
+        System.out.println(j27.join2("aaa", 111, 1.0));
+    }
+
+    private static void manufakrurerDemo() {
         Manufacturer_12 man1 = new Manufacturer_12("Man", "PL", 1960);
         Manufacturer_12 man2 = new Manufacturer_12("Iveco", "DE", 1910);
         List<Manufacturer_12> manufakturers = new ArrayList<>();
@@ -42,7 +59,6 @@ public class App {
         System.out.println(carServis_13.getCars());
 
         System.out.println(carServis_13.getCarsByManufacturer(man3));
-
     }
 
     private static void circleResizeDemo() {
