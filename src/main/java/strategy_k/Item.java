@@ -1,10 +1,10 @@
-package strategy;
+package strategy_k;
 
 public class Item {
 
     private String name;
     private String barcode;
-    private double price;
+    private int price;
 
     public Item(String name, String barcode, int price) {
         this.name = name;
@@ -20,7 +20,7 @@ public class Item {
         return barcode;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 }

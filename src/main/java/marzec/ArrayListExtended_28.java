@@ -13,13 +13,13 @@ public class ArrayListExtended_28<E> extends ArrayList<E> {
     public List<E> getEveryNthElement(int index, int skip) {
         ArrayList<E> arrayList = new ArrayList<>();
 
-        for (int i = index; i < this.size(); i += skip) {
+        for (int i = index; i < this.size(); i += skip + 1) {
             arrayList.add(this.get(i));
         }
         return arrayList;
     }
 
-    // todo dokończyć
+    // rozwiązanie moje
     public List<E> getEveryNthElementStream(int index, int skip) {
         int[] tab = {0};
         List<E> list = new ArrayList<>();
@@ -27,13 +27,14 @@ public class ArrayListExtended_28<E> extends ArrayList<E> {
         this.stream()
                 .skip(index)
                 .forEach(x -> {
-                    if (tab[0]++ % skip == 0) {
+                    if (tab[0]++ % (skip + 1) == 0) {
                         list.add(x);
                     }
                 });
         return list;
     }
-// todo sprawdzić bo nie do końca działa
+
+    // rozwiązanie prowadzącego
     public List<E> getEveryNthElementStream2(int index, int skip) {
         return IntStream.range(0, this.size())
                 .filter(i -> (i - index) % (skip + 1) == 0 && i - index >= 0)

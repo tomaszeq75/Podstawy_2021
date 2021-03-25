@@ -11,16 +11,8 @@ public class ShoppingCart {
         cart.add(item);
     }
 
-    public int calculateTotal() {
-        int total = 0;
-        for (Item item : cart) {
-            total = total + item.getPrice();
-        }
-        return total;
-    }
-
-    public void pay(IPaymentStrategy paymentStrategy) {
-        paymentStrategy.pay(calculateTotal());
+    public void pay(IPaymentStrategy paymentStrategy, ICalculateStrategy calculateStrategy) {
+        paymentStrategy.pay(calculateStrategy.calculateTotal(cart));
     }
 
 }
