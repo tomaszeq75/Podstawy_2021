@@ -1,4 +1,4 @@
-package strategy;
+package strategy_k;
 
 public class CardStrategy implements IPaymentStrategy {
 
@@ -11,7 +11,7 @@ public class CardStrategy implements IPaymentStrategy {
     }
 
     @Override
-    public void pay(double amount) {
+    public void pay(int amount) {
         System.out.println("Payment using card. Amount " + amount);
     }
 }

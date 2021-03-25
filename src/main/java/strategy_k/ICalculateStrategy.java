@@ -1,7 +1,9 @@
-package strategy;
+package strategy_k;
 
 import java.util.List;
 
 public interface ICalculateStrategy {
-    double calculateTotal(List<Item> items);
+
+    int calc(List<Item> cart);
+
 }

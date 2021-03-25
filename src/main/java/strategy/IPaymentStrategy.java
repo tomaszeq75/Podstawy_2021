@@ -2,6 +2,6 @@ package strategy;
 
 public interface IPaymentStrategy {
 
-    void pay(int amount);
+    void pay(double amount);
 
 }

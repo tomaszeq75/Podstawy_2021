@@ -7,11 +7,14 @@ public class StrategyDemo {
         ShoppingCart cart = new ShoppingCart();
         cart.addItem(new Item("kalafior", "fjo25", 150));
 
-        IPaymentStrategy strategy = new CardStrategy("adre@hej", 7089);
-        cart.pay(strategy);
+        IPaymentStrategy card = new CardStrategy("adre@hej", 7089);
+        IPaymentStrategy cash = new CashStrategy();
+        ICalculateStrategy discount = new DiscountStrategy(10);
 
-        IPaymentStrategy discount = new DiscountStrategy(10);
-        cart.pay(discount);
+        cart.pay(card, discount);
+        cart.pay(cash, discount);
+
+
     }
 
 }
