@@ -3,7 +3,8 @@ package stream_lambda;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class ChildrenRepository implements IChildrenRepository {
 
@@ -36,19 +37,24 @@ public class ChildrenRepository implements IChildrenRepository {
     public void removeDuplicates() {
         children = children.stream()
                 .distinct()
-                .collect(Collectors.toList());
+                .collect(toList());
+    }
+
+    @Override
+    public void setNamesToLowerCase() {
+        children = children.stream()
+                .map(child -> new Child(child.getName().toLowerCase(), child.getPesel()))
+                .peek(child1 -> System.out.println(child1.getName()))
+                .collect(toList());
+        System.out.println();
     }
 
     @Override
     public void setNamesToUpperCase() {
         children = children.stream()
                 .map(a -> new Child(a.getName().toUpperCase(), a.getPesel()))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public void setNamesToLowerCase() {
-        //todo
+                .peek(System.out::println)
+                .collect(toList());
     }
 
     @Override
