@@ -3,7 +3,6 @@ package marzec;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class ZAD30 {
@@ -15,15 +14,16 @@ public class ZAD30 {
                 .append("jakiś tekst2")
                 .toString();
 
-        String path = "C:\\Users\\twoly\\Documents\\SDA_Projects\\Podstawy_2021\\plik.txt";
-        creteFile(path, text);
+//        String path = "C:\\Users\\twoly\\Documents\\SDA_Projects\\Podstawy_2021\\plik.txt";
+        String path = "C:\\Users\\Tomek\\IdeaProjects\\Podstawy_2021\\plik.txt";
+        creteFileAndWrite(path, text);
 
         readFile(path);
 
-        reverseFile(path);
+        creteFileAndWrite(reverseFileName(path), reverseContent(readFile(path)));
     }
 
-    public static void reverseFile(String pathAsString) {
+    public static String reverseFileName(String pathAsString) {
         Path path = Paths.get(pathAsString);
         String folder = path.getParent().toString();
         String fullFileName = path.getFileName().toString();
@@ -35,12 +35,25 @@ public class ZAD30 {
 
         String inputText = readFile(pathAsString);
         System.out.println(inputText);
-
-        // todo reverse zawartość
-
+        return outputFilePath;
     }
 
-    public static void creteFile(String path, String text) {
+    public static String reverseContentStreamBuilder(String content) {
+        String result = new StringBuilder(content).reverse().toString();
+        System.out.println("\n" + result);
+        return result;
+    }
+
+    public static String reverseContent(String content) {
+        String result = "";
+        for (int i = content.length() - 1; i >= 0; i--) {
+            result += content.charAt(i);
+        }
+        System.out.println("\n" + result);
+        return result;
+    }
+
+    public static void creteFileAndWrite(String path, String text) {
         File file = new File(path);
         try {
             file.createNewFile();
@@ -49,6 +62,10 @@ public class ZAD30 {
             e.printStackTrace();
         }
 
+        writeToFile(path, text);
+    }
+
+    private static void writeToFile(String path, String text) {
         try (FileWriter fileWriter = new FileWriter(path)) {
             fileWriter.write(text);
             System.out.println("Text written");
@@ -62,8 +79,6 @@ public class ZAD30 {
         String result = "";
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
             result = bufferedReader.lines().collect(Collectors.joining("\n"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
