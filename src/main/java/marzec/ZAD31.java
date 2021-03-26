@@ -2,62 +2,68 @@ package marzec;
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ZAD31 {
     public static void main(String[] args) {
 
-        String inputFilePath = "c:\\Users\\twoly\\Documents\\SDA_Projects\\Podstawy_2021\\pan-tadeusz.txt";
+//        String inputFilePath = "c:\\Users\\twoly\\Documents\\SDA_Projects\\Podstawy_2021\\pan-tadeusz.txt";
+        String inputFilePath = "C:\\Users\\Tomek\\IdeaProjects\\Podstawy_2021\\pan-tadeusz.txt";
         String inputText = readFile(inputFilePath);
 
-        List<String> words = Arrays.asList(inputText.split("[ ,.-?!()_\"\'«»\n]"));
+        List<String> words = Arrays.asList(inputText.split("[ ,.-?!()_\"\'«»\n—]"));
 
-        Map<String, Long> wordsCount = new HashMap<>();
-        wordsCount = words.stream()
-                .collect(Collectors.groupingBy(w -> w.toLowerCase(), Collectors.counting()));
-
-//        for (Map.Entry<String, Long> entry : wordsCount.entrySet()) {
-//            System.out.println(entry.getKey() + ": " + entry.getValue());
-//        }
-
+        Map<String, Long> wordsCount = words.stream()
+                .collect(Collectors.groupingBy(String::toLowerCase, Collectors.counting()));
 
         List<Map.Entry<String, Long>> wordsCountSorted = new LinkedList<>(wordsCount.entrySet());
-        wordsCountSorted.sort((x, y) -> y.getValue().compareTo(x.getValue()));
-        wordsCountSorted = wordsCountSorted.stream().limit(25).collect(Collectors.toList());
+        wordsCountSorted = wordsCountSorted.stream()
+                .filter(e -> e.getKey().length() > 1)
+                .sorted((x, y) -> y.getValue().compareTo(x.getValue()))
+                .limit(25)
+                .collect(Collectors.toList());
 
-        // todo sprawdzić czy działa sortowanie
-        Map<String, Long> wordsCountSortedMap = new HashMap<>();
+        Map<String, Long> wordsCountSortedMap = new LinkedHashMap<>();
+
+        // niestety sortowanie nie działa bo toMap tworzy HashMap
+//        wordsCountSortedMap = wordsCount.entrySet().stream()
+//                .filter(e -> e.getKey().length() > 1)
+//                .sorted((Collections.reverseOrder(Map.Entry.comparingByValue())))
+//                .peek(c-> System.out.println(c.getValue()))
+//                .limit(25)
+//                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         for (Map.Entry<String, Long> entry : wordsCountSorted) {
             wordsCountSortedMap.put(entry.getKey(), entry.getValue());
         }
 
+        System.out.println("-----");
         for (Map.Entry<String, Long> entry : wordsCountSortedMap.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            System.out.println(entry.getValue() + ":" + entry.getKey());
         }
-
-        // todo stworzyć tabelkę
 
         String outputText = "";
+        StringBuilder builder = new StringBuilder();
+        String horizontalLine = "-------------------------------\n";
+
         for (Map.Entry<String, Long> entry : wordsCountSortedMap.entrySet()) {
 
-            outputText += new StringBuilder()
-                    .append("---------------------------------")
-                    .append(System.lineSeparator())
-                    .append("                                 ")
-                    .append(System.lineSeparator())
-                    .insert(30, entry.getKey())
-                    .insert(40, entry.getValue())
-                    .insert(50, "|")
-                    .toString();
+            builder.append(horizontalLine)
+                    .append(new StringBuilder()
+                            .append("                                     ")
+                            .insert(0, "|") //dodanie linii pionowej
+                            .insert(2, entry.getKey())
+                            .insert(15, "|")
+                            .insert(17, entry.getValue())
+                            .insert(30, "|")
+                            .append(System.lineSeparator())
+                            .toString());
         }
 
-        System.out.println(outputText);
-
-
-
-
+        System.out.println(builder.toString());
     }
+
 
     public static void createFile(String path, String text) {
         //zaczynamy od utworzenia pliku
