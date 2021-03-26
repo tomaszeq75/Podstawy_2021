@@ -2,6 +2,7 @@ package marzec;
 
 import java.io.*;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ZAD31 {
@@ -25,10 +26,11 @@ public class ZAD31 {
 
         Map<String, Long> wordsCountSortedMap = new LinkedHashMap<>();
 
-        // todo niestety sortowanie nie działa
+        // niestety sortowanie nie działa bo toMap tworzy HashMap
 //        wordsCountSortedMap = wordsCount.entrySet().stream()
 //                .filter(e -> e.getKey().length() > 1)
-//                .sorted((x, y) -> y.getValue().compareTo(x.getValue()))
+//                .sorted((Collections.reverseOrder(Map.Entry.comparingByValue())))
+//                .peek(c-> System.out.println(c.getValue()))
 //                .limit(25)
 //                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
