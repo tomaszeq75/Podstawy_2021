@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ZAD31 {
     public static void main(String[] args) {
-// tekst testowy
+
 //        String inputFilePath = "c:\\Users\\twoly\\Documents\\SDA_Projects\\Podstawy_2021\\pan-tadeusz.txt";
         String inputFilePath = "C:\\Users\\Tomek\\IdeaProjects\\Podstawy_2021\\pan-tadeusz.txt";
         String inputText = readFile(inputFilePath);
